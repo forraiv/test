@@ -1,5 +1,151 @@
-<html>
-  <body>
-    test
-  </body>
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oznam - Odstávka webového sídla - Ústavný súd Slovenskej republiky</title>
+    <style>
+        :root {
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --primary-blue: #002d62; /* Presná tmavomodrá Ústavného súdu */
+            --text-dark: #272833;
+            --text-muted: #a0aec0;
+            --border-color: #e5e7eb;
+            --font-base: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-serif: 'Times New Roman', Times, Georgia, serif;
+        }
+
+        body {
+            font-family: var(--font-base);
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Hlavný biely kontajner podľa predlohy */
+        .card {
+            background-color: var(--card-bg);
+            max-width: 680px;
+            width: 90%;
+            padding: 3.5rem 3rem;
+            box-sizing: border-box;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            text-align: center;
+        }
+
+        /* Hlavička s logom */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-text {
+            text-align: left;
+        }
+
+        .logo-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 5px;
+            color: #1a202c;
+            line-height: 1.2;
+        }
+
+        .logo-subtitle {
+            font-size: 0.75rem;
+            letter-spacing: 3.5px;
+            color: #4a5568;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        /* Deliace čiary */
+        .divider {
+            border: 0;
+            height: 1px;
+            background-color: #eaeaea;
+            margin: 2.5rem 0;
+        }
+
+        /* Rotujúci loading kruh presne podľa obrázka */
+        .spinner {
+            width: 55px;
+            height: 55px;
+            border: 5px solid #eef2f6;
+            border-top: 5px solid var(--primary-blue);
+            border-radius: 50%;
+            margin: 0 auto 2rem auto;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Typografia textu */
+        h1 {
+            font-size: 1.65rem;
+            color: var(--primary-blue);
+            margin: 0 0 2rem 0;
+            font-weight: 700;
+        }
+
+        .message-body {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: #2d3748;
+            margin: 0;
+            padding: 0 1rem;
+        }
+
+        .message-body p {
+            margin: 1.2rem 0;
+        }
+
+        .highlight {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+            </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Hlavička: Štátny znak SR (SVG) + Text -->
+        <div class="logo-container">
+            <img alt="Ústavný súd Slovenskej republiky" src="data:image/png;base64,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"
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Načítavací kruh -->
+        <div class="spinner"></div>
+
+        <!-- Hlavný text oznamu -->
+        <h1>Prebieha údržba webového sídla</h1>
+        
+        <div class="message-body">
+            <p>Vážení návštevníci webového sídla Ústavného súdu Slovenskej republiky,</p>
+            <p class="highlight">na stránke momentálne prebieha plánovaná údržba.</p>
+            <p>Ospravedlňujeme sa za nedostupnosť služby a ďakujeme za trpezlivosť.</p>
+        </div>
+        
+    </div>
+
+</body>
 </html>
